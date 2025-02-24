@@ -1,0 +1,153 @@
+﻿@model IEnumerable<UI_MVC.Domain.Member>
+
+@{
+    ViewBag.Title = "Infos médicales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var age = 0;
+}
+
+<div class="blockContent">
+
+    <h2>Infos médicales membres @DateTime.Now.Year</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birthdate)
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @*@Html.ActionLink("Echéance visite méd", "MembersMedicalInfo", new {sortOrder = ViewBag.VisitSortParm })*@
+                Echéance visite méd
+                <div class="tooltipCustom">
+                    <img src="~/Style/images/info.png" alt="error" />
+                    <span class="tooltiptext">
+                        Valable maximum 1 an et 4 mois. 
+                    </span>
+                </div>
+            </th>
+            <th>
+                Echéance ECG
+                <div class="tooltipCustom">
+                    <img src="~/Style/images/info.png" alt="error" />
+                    <span class="tooltiptext">
+                        Tous les 5 ans jusqu'à 45 ans.
+                        Tous les 2 ans de 45 ans à 55 ans.
+                        <i>Remarque: A 45 ans, ECG datant de maximum 2 ans.</i>
+                        Tous les ans à partir de 55 ans. 
+                    </span>
+                </div>
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            {
+                age = DateTime.Now.Year - item.Birthdate.Year;
+                if (DateTime.Now < item.Birthdate.AddYears(age)) { age--; };
+            }
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Convert.ToString(string.Format("{0:dd-MM-yyyy}", item.Birthdate))
+                </td>
+                <td>
+                    @age
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @if (item.MedicalVisits.Count() == 0)
+                    {
+                        <div style="color: red">
+                            No medical visit
+                        </div>
+                    }
+                    @foreach (var med in item.MedicalVisits)
+                    {
+                        if (med.ExpirationDate.CompareTo(DateTime.Now) < 0)
+                        {
+                            <div style="color: red">
+                                @Html.DisplayFor(modelItem => med.ExpirationDate)
+                            </div>
+                        }
+                        else if (DateTime.Now.CompareTo(med.ExpirationDate.AddDays(-90)) >= 0)
+                        {
+                            <div style="color: orange">
+                                @Html.DisplayFor(modelItem => med.ExpirationDate)
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="color: green">
+                                @Html.DisplayFor(modelItem => med.ExpirationDate)
+                            </div>
+                        }
+                    }
+                </td>
+                <td>
+                    @if (item.Ecgs.Count() == 0)
+                    {
+                        <div style="color: red">
+                            No ECG to show
+                        </div>
+                    }
+                    @foreach (var ecg in item.Ecgs)
+                    {
+
+
+                        if (ecg.ExpirationDate.CompareTo(DateTime.Now) < 0)
+                        {
+                            <div style="color: red">
+                                @Html.DisplayFor(modelItem => ecg.ExpirationDate)
+                            </div>
+                        }
+                        else if (DateTime.Now.CompareTo(ecg.ExpirationDate.AddDays(-90)) >= 0)
+                        {
+                            <div style="color: orange">
+                                @Html.DisplayFor(modelItem => ecg.ExpirationDate)
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="color: green">
+                                @Html.DisplayFor(modelItem => ecg.ExpirationDate)
+                            </div>
+                        }
+                    }
+                </td>
+                <td>
+                    @if (User.Identity.Name.Equals("emmanuel.kouar@outlook.com"))
+                    {
+                        @Html.ActionLink("Modifier", "Edit", "Members", new { id = item.MemberId }, new { @class = "btn btn-default" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Modifier", "Edit", "Members", new { id = item.MemberId }, new { @class = "btn btn-default disabled" })
+                    }
+                    @Html.ActionLink("Details", "Details", "Members", new { id = item.MemberId }, new { @class = "btn btn-default" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

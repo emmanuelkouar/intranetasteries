@@ -1,0 +1,93 @@
+﻿@model IEnumerable<UI_MVC.Domain.Member>
+
+@{
+    ViewBag.Title = "Archives / Tous les membres";
+    var age = 0;
+}
+
+<div class="blockContent">
+    <h2>Archives / Tous les membres</h2>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Chercher par nom: @Html.TextBox("SearchString", null, new { @class = "form-control-custom", placeholder = "Chercher" })
+            @*<input type="submit" value="Search" />*@
+      
+            Chercher par ville: @Html.TextBox("searchCity", null, new { @class = "form-control-custom", placeholder = "Chercher" })
+            <input type="submit" value="Chercher" class="btn btn-default"/>
+        </p>
+    }
+    Nombre de membres: @Model.Count()
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birthdate)
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
+            {
+                age = DateTime.Now.Year - item.Birthdate.Year;
+                if (DateTime.Now < item.Birthdate.AddYears(age)) { age--; };
+            }
+
+            <tr>
+                <td>
+                   @Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName) 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address) @Html.DisplayFor(modelItem => item.HouseNumber) (bte. @Html.DisplayFor(modelItem => item.MailBox) ) <br> @Html.DisplayFor(modelItem => item.Zip) @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Convert.ToString(string.Format("{0:dd-MM-yyyy}", item.Birthdate))
+                </td>
+                <td>
+                    @age
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @if (User.Identity.Name.Equals("emmanuel.kouar@outlook.com"))
+                    {
+                        @Html.ActionLink("Modifier", "Edit", "Members", new { id = item.MemberId }, new { @class = "btn btn-default btnCustom" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Modifier", "Edit", "Members", new { id = item.MemberId }, new { @class = "btn btn-default btnCustom disabled" })
+                    }
+                    @Html.ActionLink("Details", "Details", new { id = item.MemberId }, new { @class = "btn btn-default btnCustom" })
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.MemberId }, new { @class = "btn btn-danger" })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

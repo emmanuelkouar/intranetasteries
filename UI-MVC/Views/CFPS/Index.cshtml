@@ -1,0 +1,131 @@
+﻿@model IEnumerable<UI_MVC.Domain.Member>
+
+@{
+    ViewBag.Title = "CFPS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="blockContent">
+
+    <h2>List des CFPS @DateTime.Now.Year</h2>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.Label("Délivré le")
+            </th>
+            <th>
+                @Html.Label("Recyclage")
+            </th>
+            <th>
+                @Html.Label("Date d'échéance")
+                <div class="tooltipCustom">
+                    <img src="~/Style/images/info.png" alt="error" />
+                    <span class="tooltiptext">
+                        Règle Lifras, valable 5 ans
+                    </span>
+                </div>
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @if (item.CFPSs.Count() == 0)
+                    {
+                        <div style="color: red">
+                            No CFPS
+                        </div>
+                    }
+                    @foreach (var cfps in item.CFPSs)
+                    {
+                        if (cfps.ExpirationDate.CompareTo(DateTime.Now) < 0)
+                        {
+                            <div style="color: red">
+                                @Html.DisplayFor(modelItem => cfps.DateGet)
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="color: green">
+                                @Html.DisplayFor(modelItem => cfps.DateGet)
+                            </div>
+                        }
+                    }
+                </td>
+                <td>
+                    @if (item.CFPSs.Count() == 0)
+                    {
+                        <div style="color: red">
+                            No CFPS
+                        </div>
+                    }
+                    @foreach (var cfps in item.CFPSs)
+                    {
+                        if (cfps.ExpirationDate.CompareTo(DateTime.Now) < 0)
+                        {
+                            <div style="color: red">
+                                @Html.DisplayFor(modelItem => cfps.IsRecycling)
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="color: green">
+                                @Html.DisplayFor(modelItem => cfps.IsRecycling)
+                            </div>
+                        }
+                    }
+                </td>
+                <td>
+                    @if (item.CFPSs.Count() == 0)
+                    {
+                        <div style="color: red">
+                            No CFPS
+                        </div>
+                    }
+                    @foreach (var cfps in item.CFPSs)
+                    {
+                        if (cfps.ExpirationDate.CompareTo(DateTime.Now) < 0)
+                        {
+                            <div style="color: red">
+                                @Html.DisplayFor(modelItem => cfps.ExpirationDate)
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="color: green">
+                                @Html.DisplayFor(modelItem => cfps.ExpirationDate)
+                            </div>
+                        }
+                    }
+                </td>
+                <td>
+
+                    @if (User.Identity.Name.Equals("emmanuel.kouar@outlook.com"))
+                    {
+                        @Html.ActionLink("Modifier", "Edit", "Members", new { id = item.MemberId }, new { @class = "btn btn-default" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Modifier", "Edit", "Members", new { id = item.MemberId }, new { @class = "btn btn-default disabled" })
+                    }
+                    
+                    @Html.ActionLink("Details", "Details", "Members", new { id = item.MemberId }, new { @class = "btn btn-default" })
+
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    </div>

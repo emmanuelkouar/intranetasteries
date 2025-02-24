@@ -1,0 +1,622 @@
+﻿@model UI_MVC.Domain.Member
+
+@{
+    ViewBag.Title = "Details";
+    var age = 0;
+    age = DateTime.Now.Year - Model.Birthdate.Year;
+    if (DateTime.Now < Model.Birthdate.AddYears(age)) { age--; };
+}
+<div class="blockContent">
+
+    <h2>@Model.LastName @Model.FirstName</h2>
+
+    <div>
+
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+            <li role="presentation" class="active"><a href="#Member" aria-controls="Member" role="tab" data-toggle="tab">Membre <span class="glyphicon glyphicon-user"></span></a></li>
+            <li role="presentation"><a href="#MedVisit" aria-controls="MedVisit" role="tab" data-toggle="tab">Médicale <span class="glyphicon glyphicon-certificate"></span></a></li>
+            <li role="presentation"><a href="#Ecg" aria-controls="ecg" role="tab" data-toggle="tab">E.C.G. <span class="glyphicon glyphicon-heart"></span></a></li>
+            <li role="presentation"><a href="#Subs" aria-controls="subs" role="tab" data-toggle="tab">Cotisations <span class="glyphicon glyphicon-euro"></span></a></li>
+            <li role="presentation"><a href="#CFPS" aria-controls="cfps" role="tab" data-toggle="tab">CFPS <span class="glyphicon glyphicon-plus"></span></a></li>
+            <li role="presentation"><a href="#DiveLicense" aria-controls="DiveLicense" role="tab" data-toggle="tab">Plongée <span class="glyphicon glyphicon-book"></span></a></li>
+            <li role="presentation"><a href="#SpecLicense" aria-controls="SpecLicense" role="tab" data-toggle="tab">Spécialisation <span class="glyphicon glyphicon-book"></span></a></li>
+            <li role="presentation"><a href="#ApneaLicense" aria-controls="ApneaLicense" role="tab" data-toggle="tab">Apnée <span class="glyphicon glyphicon-book"></span></a></li>
+            <li role="presentation"><a href="#ICE" aria-controls="ICE" role="tab" data-toggle="tab">ICE <span class="glyphicon glyphicon-earphone"></span></a></li>
+            <li role="presentation"><a href="#Function" aria-controls="Function" role="tab" data-toggle="tab">Fonctions <span class="glyphicon glyphicon-screenshot"></span></a></li>
+
+        </ul>
+
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="Member">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.LastName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.FirstName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Country)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Country)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.HouseNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.HouseNumber)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MailBox)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MailBox)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Zip)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Zip)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.City)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.City)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Phone)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Birthdate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Birthdate)
+                    </dd>
+                    <dt>
+                        Age
+                    </dt>
+
+                    <dd>
+                        @age
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Gender)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CMASNumber)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CMASNumber)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LIFRASNumber)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.LIFRASNumber)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AllergiesOrMedicaments)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.AllergiesOrMedicaments)
+                    </dd>
+
+                </dl>
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="MedVisit">
+                <br />
+                @if (Model.MedicalVisits.Count() != 0)
+                {
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.Label("Date")
+                    </th>
+                    <th>
+                        @Html.Label("Autorisation apnée")
+                    </th>
+                    <th>
+                        @Html.Label("Date d'échéance")
+                    </th>
+                    <th>
+                        @Html.Label("Notes")
+                    </th>
+
+                </tr>
+
+
+                @foreach (var item in Model.MedicalVisits.OrderByDescending(i => i.ExpirationDate))
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AuthorizeApnea)
+                            </td>
+                            <td>
+                                @if (item.ExpirationDate.CompareTo(DateTime.Now) < 0)
+                                    {
+                                    <div style="color: red">
+                                        @Html.DisplayFor(modelItem => item.ExpirationDate)
+                                    </div>
+                                    }
+                                    else if (DateTime.Now.CompareTo(item.ExpirationDate.AddDays(-90)) >= 0)
+                                    {
+                                    <div style="color: orange">
+                                        @Html.DisplayFor(modelItem => item.ExpirationDate)
+                                    </div>
+                                    }
+                                    else
+                                    {
+                                    <div style="color: green">
+                                        @Html.DisplayFor(modelItem => item.ExpirationDate)
+                                    </div>
+                                    }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Notes)
+                            </td>
+                        </tr>
+                        }
+            </table>
+
+
+                }
+                else
+                {
+            @:<i>Pas d'archives médicales en ce moment.</i>
+                }
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="Ecg">
+                <br />
+                @if (Model.Ecgs.Count() != 0)
+            {
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.Label("Date")
+                    </th>
+                    <th>
+                        @Html.Label("Notes")
+                    </th>
+                    <th>
+                        @Html.Label("Date d'écheance")
+                    </th>
+                </tr>
+
+
+                @foreach (var item in Model.Ecgs.OrderByDescending(i => i.ExpirationDate))
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Notes)
+                        </td>
+                        <td>
+                            @if (item.ExpirationDate.CompareTo(DateTime.Now) < 0)
+                                {
+                                <div style="color: red">
+                                    @Html.DisplayFor(modelItem => item.ExpirationDate)
+                                </div>
+                                }
+                                else if (DateTime.Now.CompareTo(item.ExpirationDate.AddDays(-90)) >= 0)
+                                {
+                                <div style="color: orange">
+                                    @Html.DisplayFor(modelItem => item.ExpirationDate)
+                                </div>
+                                }
+                                else
+                                {
+                                <div style="color: green">
+                                    @Html.DisplayFor(modelItem => item.ExpirationDate)
+                                </div>
+                                }
+                        </td>
+                    </tr>
+                    }
+            </table>
+
+            }
+            else
+            {
+            @:<i>Pas d'archives d'ECG en ce moment.</i>
+                }
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="Subs">
+                <br />
+                @if (Model.Subscriptions.Count() != 0)
+            {
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.Label("Date de paiement")
+                    </th>
+                    <th>
+                        @Html.Label("Date d'écheance")
+                    </th>
+                    <th>
+                        @Html.Label("Années consécutives")
+                    </th>
+                    <th>
+                        @Html.Label("Type de cotisation")
+                    </th>
+                    <th>
+                        @Html.Label("Statut")
+                    </th>
+                    <th>
+                        @Html.Label("Type de membre")
+                    </th>
+                </tr>
+
+
+                @foreach (var item in Model.Subscriptions.OrderByDescending(i => i.ExpirationDate))
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DatePayed)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ExpirationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ConsecutiveYears)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubscriptionType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MemberState)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MembershipType)
+                        </td>
+                    </tr>
+                    }
+            </table>
+
+            }
+            else
+            {
+            @:<i>Pas d'archives de cotisations en ce moment.</i>
+                }
+            </div>
+
+
+            <div role="tabpanel" class="tab-pane" id="CFPS">
+                <br />
+                @if (Model.CFPSs.Count() != 0)
+            {
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.Label("Délivré le")
+                    </th>
+                    <th>
+                        @Html.Label("Recyclage ")
+                    </th>
+                    <th>
+                        @Html.Label("Date d'échéance")
+                    </th>
+                </tr>
+
+
+                @foreach (var item in Model.CFPSs.OrderByDescending(i => i.ExpirationDate))
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateGet)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsRecycling)
+                        </td>
+                        <td>
+                            @if (item.ExpirationDate.CompareTo(DateTime.Now) < 0)
+                               {
+                                <div style="color: red">
+                                    @Html.DisplayFor(modelItem => item.ExpirationDate)
+                                </div>
+                               }
+                               else
+                               {
+                                <div style="color: green">
+                                    @Html.DisplayFor(modelItem => item.ExpirationDate)
+                                </div>
+                               }
+                        </td>
+                    </tr>
+                    }
+            </table>
+
+            }
+            else
+            {
+            @:<i>Pas d'archives de CFPS en ce moment.</i>
+                }
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="DiveLicense">
+                <br />
+                @if (Model.DiveLicenses.Count() != 0)
+            {
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.Label("Délivré le")
+                    </th>
+                    <th>
+                        @Html.Label("Niveau")
+                    </th>
+                    <th>
+                        @Html.Label("N° de brevet")
+                    </th>
+                </tr>
+
+
+                @foreach (var item in Model.DiveLicenses.OrderByDescending(i => i.DateGet))
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateGet)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Level)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LicenseNumber)
+                        </td>
+                    </tr>
+                    }
+            </table>
+
+            }
+            else
+            {
+            @:<i>Pas d'archives de brevets de plongée en ce moment.</i>
+                }
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="SpecLicense">
+                <br />
+                @if (Model.SpecialisationLicenses.Count() != 0)
+            {
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.Label("Délivré le")
+                    </th>
+                    <th>
+                        @Html.Label("Niveau")
+                    </th>
+                    <th>
+                        @Html.Label("N° de brevet")
+                    </th>
+                </tr>
+
+
+                @foreach (var item in Model.SpecialisationLicenses.OrderByDescending(i => i.DateGet))
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateGet)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Level)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LicenseNumber)
+                        </td>
+                    </tr>
+                    }
+            </table>
+
+            }
+            else
+            {
+            @:<i>Pas d'archives de brevets de spécialisation en ce moment.</i>
+                }
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="ApneaLicense">
+                <br />
+                @if (Model.ApneaLicenses.Count() != 0)
+            {
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.Label("Délivré le")
+                    </th>
+                    <th>
+                        @Html.Label("Niveau")
+                    </th>
+                    <th>
+                        @Html.Label("N° de brevet")
+                    </th>
+                </tr>
+
+
+                @foreach (var item in Model.ApneaLicenses.OrderByDescending(i => i.DateGet))
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateGet)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Level)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LicenseNumber)
+                        </td>
+                    </tr>
+                    }
+            </table>
+
+            }
+            else
+            {
+            @:<i>Pas d'archives de brevets d'apnée en ce moment.</i>
+                }
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="ICE">
+                <br />
+                @if (Model.ICEs.Count() != 0)
+            {
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.Label("Prénom")
+                    </th>
+                    <th>
+                        @Html.Label("Nom")
+                    </th>
+                    <th>
+                        @Html.Label("Description")
+                    </th>
+                    <th>
+                        @Html.Label("Téléphone")
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.ICEs)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                    </tr>
+                    }
+            </table>
+
+            }
+            else
+            {
+            @:<i>Pas d'ICE en ce moment.</i>
+                }
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="Function">
+                <br />
+                @if (Model.MemberFunctions.Count() != 0)
+            {
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.Label("Fonction")
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.MemberFunctions)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Function)
+                        </td>
+
+                    </tr>
+                    }
+            </table>
+
+            }
+            else
+            {
+            @:<i>Pas de fonctions en ce moment.</i>
+                }
+            </div>
+        </div>
+    </div>
+    <p>
+        @if (User.Identity.Name.Equals("emmanuel.kouar@outlook.com"))
+        {
+            @Html.ActionLink("Modifier", "Edit", "Members", new { id = Model.MemberId }, new { @class = "btn btn-default" })
+        }
+        else
+        {
+            @Html.ActionLink("Modifier", "Edit", "Members", new { id = Model.MemberId }, new { @class = "btn btn-default disabled" })
+        }
+        @Html.ActionLink("Retour", "Index", null, new { @class = "btn btn-default" })
+    </p>
+
+    </div>
+    <script type="text/javascript">
+        $('#myTabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+
+    </script>

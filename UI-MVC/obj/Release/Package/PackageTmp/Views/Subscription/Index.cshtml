@@ -1,0 +1,116 @@
+﻿@model IEnumerable<UI_MVC.Domain.Subscription>
+
+@{
+    ViewBag.Title = "Cotisations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="blockContent">
+
+    <h2>List des cotisations</h2>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Chercher par année: @Html.TextBox("year", null, new { @class = "form-control-custom", placeholder = "Chercher" })
+            <input type="submit" value="Chercher" class="btn btn-default"/>
+        </p>
+    }
+    Nombre de membres en ordre de cotisation pour l'année @ViewBag.Year: @Model.Count()
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberId.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberId.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberId.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberId.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MembershipType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberState) <text>/Fonctions</text>
+            </th>
+            <th>@Html.DisplayNameFor(model => model.ExpirationDate)</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberId.LastName)
+                    @Html.DisplayFor(modelItem => item.MemberId.FirstName)
+               
+                 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberId.Address)
+                    @Html.DisplayFor(modelItem => item.MemberId.HouseNumber)
+                    @if (item.MemberId.MailBox != null)
+                    {
+                      @Html.Raw("Bte."); 
+                      @Html.DisplayFor(modelItem => item.MemberId.MailBox)
+                    }
+                 <br/>
+                    @Html.DisplayFor(modelItem => item.MemberId.Zip)
+                    @Html.DisplayFor(modelItem => item.MemberId.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberId.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberId.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MembershipType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberState)<br/>
+                    @foreach (var m in item.MemberId.MemberFunctions)
+                    {
+                        @Html.DisplayFor(modelItem => m.Function)<br/>
+                    }
+                </td>
+                <td>
+                    @if (item.ExpirationDate.CompareTo(DateTime.Now) < 0)
+                    {
+                        <div style="color: red">
+                            @Html.DisplayFor(modelItem => item.ExpirationDate)
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="color: green">
+                            @Html.DisplayFor(modelItem => item.ExpirationDate)
+                        </div>
+                    }
+                    <text>Cons:</text>@Html.DisplayFor(modelItem => item.ConsecutiveYears)
+
+                </td>
+                <td>
+                    @if (User.Identity.Name.Equals("emmanuel.kouar@outlook.com"))
+                    {
+                        @Html.ActionLink("Modifier", "Edit", "Members", new { id = item.MemberId.MemberId }, new { @class = "btn btn-default" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Modifier", "Edit", "Members", new { id = item.MemberId.MemberId }, new { @class = "btn btn-default disabled"})
+                    }
+                    @Html.ActionLink("Details", "Details", "Members", new { id = item.MemberId.MemberId }, new { @class = "btn btn-default btnCustom"})
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

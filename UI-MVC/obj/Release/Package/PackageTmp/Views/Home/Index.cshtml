@@ -1,0 +1,178 @@
+﻿@{
+    ViewBag.Title = "Dashboard ";
+}
+
+
+<div class="row">
+    <div class="homeHeader">
+        <div class="row">
+            <div class="col-md-10">
+                <h1>Intranet Astéries</h1>
+            </div>
+            <div class="col-md-2 logoHome">
+                <img src="~/Style/images/Asréries - to breathe or not to breathe-01.png" width="160" height="80 " alt="error" style="padding-top:1%" />
+            </div>
+        </div>
+        <div class="row">
+            <p>
+                Bienvenu sur l'intranet Astéries. Ce système a été conçu pour la géstion de nos membres. Sur le dashboard, vous retrouvez un tas d'informations utiles.
+            </p>
+        </div>
+        </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-5 text-center homeBloc1">
+        <h4>Nombre de membres @DateTime.Now.Year</h4>
+        <p>
+            <h1>@ViewBag.TotalMembers</h1>
+
+            <div class="col-md-6">
+                <h5>
+                    Première appartenance <br /><br />
+                    @ViewBag.FirstAppartenance<br /><br />
+                    Effectifs
+                    @ViewBag.Effectifs
+                </h5>
+
+            </div>
+            <div class="col-md-6">
+                <h5> Seconde appartenance<br /><br/>
+                @ViewBag.SecAppartenance<br /><br />
+                Adhérents
+                @ViewBag.Adherents
+                
+                
+                </h5>
+
+            </div>
+
+            
+           
+        </p>
+        <div class="buttons">
+            <p>
+                @if (User.Identity.Name.Equals("emmanuel.kouar@outlook.com"))
+                {
+                    @Html.ActionLink("Nouveau membre \u00BB", "Create", "Members", null, new { @class = "btn btn-default" })
+                }
+                else
+                {
+                    @Html.ActionLink("Nouveau membre \u00BB", "Create", "Members", null, new { @class = "btn btn-default disabled" })
+                }
+            
+                @Html.ActionLink("Archive \u00BB", "Index", "Members", null, new { @class = "btn btn-default" })
+                @Html.ActionLink("Brevets \u00BB", "Index", "License", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-3 text-center homeBloc2">
+        <h4>Membre pas en ordre de visite médicale</h4>
+        <p>
+            <h2 style="color: red">@ViewBag.MedNotInOrder</h2>
+        </p>
+        <h4>Membre pas en ordre de ECG</h4>
+        <p>
+            <h2 style="color: red">@ViewBag.EcgNotInOrder</h2>
+        </p>
+        <div class="buttons">
+            <p>@Html.ActionLink("Voir toute la liste \u00BB", "MembersMedicalInfo", "Members", null, new { @class = "btn btn-default" })</p>
+        </div>
+    </div>
+
+    <div class="col-md-3 text-center homeBloc3and4">
+        <div class="row text-center homeBloc3">
+            <h4>Nombre de CFPS</h4>
+            <p>
+                <h4>@ViewBag.NumberOfCFPS</h4>
+            </p>
+
+            <p>
+                @Html.ActionLink("Voir toute la liste \u00BB", "Index", "CFPS", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="row text-center homeBloc4">
+            <h4>Contacter les membres</h4>
+            <div class="buttons">
+                <p>
+                    @Html.ActionLink("E-Mail", "SendMail", "Home", null, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Exporter vers Excel \u00BB", "ExportToExcel", "Home", null, new { @class = "btn btn-warning" })
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<div class="row">
+@using (Html.BeginForm("Index", "Subscription", FormMethod.Post))
+{
+    <div class="col-md-2 text-center homeBloc5">
+        <h4>Inscriptions par année</h4>
+        <div class="buttons">
+            <p>
+                <form>
+                    <div class="form-group">
+                        @Html.TextBox("year", null, new { @class = "form-control-custom", @type = "number", placeholder = "Search" })
+                    </div>
+                </form>
+            </p>
+            <p>
+                <input type="submit" value="Chercher" class="btn btn-default" />
+            </p>
+        </div>
+    </div>
+}
+@using (Html.BeginForm("LicensesGetByYear", "License", FormMethod.Post))
+{
+    <div class="col-md-3 text-center homeBloc6">
+        <h4>Chercher les brevets délivré par année</h4>
+        <div class="buttons">
+            <p>
+                <form>
+                    <div class="form-group">
+                        @Html.TextBox("year", null, new { @class = "form-control-custom", @type = "number", placeholder = "Search" })
+                    </div>
+                </form>
+            </p>
+            <p><input type="submit" value="Chercher" class="btn btn-default" /></p>
+        </div></div>
+}
+@using (Html.BeginForm("Index", "Members", FormMethod.Post))
+{
+    <div class="col-md-3 text-center homeBloc7">
+        <h4>Chercher un membre par nom</h4>
+        <div class="buttons">
+            <p>
+                <form>
+                    <div class="form-group">
+                        @Html.TextBox("SearchString", null, new { @class = "form-control-custom", placeholder = "Search" })
+                    </div>
+                </form>
+            </p>
+            <p><input type="submit" value="Chercher" class="btn btn-default" /></p>
+        </div>
+    </div>
+}
+@using (Html.BeginForm("MembersByCity", "Members", FormMethod.Post))
+{
+    <div class="col-md-3 text-center homeBloc8">
+        <h4>Chercher un membre par ville</h4>
+        <div class="buttons">
+            <p>
+                <form>
+                    <div class="form-group">
+                       @Html.TextBox("searchCity", null, new { @class = "form-control-custom", placeholder = "Ville" })
+                    </div>
+                </form>
+            </p>
+            <p><input type="submit" value="Chercher" class="btn btn-default" /></p>
+        </div>
+        </div>
+}
+</div>

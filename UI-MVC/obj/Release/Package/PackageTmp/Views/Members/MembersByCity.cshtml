@@ -1,0 +1,98 @@
+﻿@model IEnumerable<UI_MVC.Domain.Subscription>
+
+@{
+    ViewBag.Title = "Membre par ville";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="blockContent">
+
+    <h2>Membre par ville pour l'année @DateTime.Now.Year</h2>
+
+    <p>
+        @using (Html.BeginForm())
+        {
+        <p>
+           Chercher par année: @Html.TextBox("year", null, new { @class = "form-control-custom", placeholder = "Chercher" })
+            Chercher par ville: @Html.TextBox("searchCity", null, new { @class = "form-control-custom", placeholder = "Chercher" })
+            <input type="submit" value="Chercher" class="btn btn-default"/>
+        </p>
+        }
+        </p>
+   Nombre de membres: @Model.Count()
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MemberId.LastName)
+                </th>
+ 
+                <th>
+                    @Html.DisplayNameFor(model => model.MemberId.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MemberId.HouseNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MemberId.MailBox)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MemberId.Zip)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MemberId.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MemberId.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MemberId.Gender)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MemberId.LastName)
+          
+                        @Html.DisplayFor(modelItem => item.MemberId.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MemberId.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MemberId.HouseNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MemberId.MailBox)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MemberId.Zip)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MemberId.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MemberId.Email)
+                    </td>
+     
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MemberId.Gender)
+                    </td>
+                    <td>
+                        @if (User.Identity.Name.Equals("emmanuel.kouar@outlook.com"))
+                        {
+                            @Html.ActionLink("Modifier", "Edit", "Members", new { id = item.MemberId }, new { @class = "btn btn-default btnCustom" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Modifier", "Edit", "Members", new { id = item.MemberId }, new { @class = "btn btn-default disabled btnCustom" })
+                        }
+                        @Html.ActionLink("Details", "Details", "Members", new { id = item.MemberId.MemberId }, new { @class = "btn btn-default btnCustom" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>

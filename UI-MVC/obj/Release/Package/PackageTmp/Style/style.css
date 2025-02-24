@@ -1,0 +1,287 @@
+﻿/*Main Style*/
+/*====================================================================*/
+
+body {
+    /*background-image: none;*/
+    background-image: url("../../img/header.jpg");
+    height: 100%;
+}
+
+
+footer {
+    clear: both;
+    background-color: rgba(0,0,0,0.5);
+    color: rgba(255,255,255,.2);
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    border-radius: 5px;
+    padding: 1%;
+}
+
+.blockContent {
+    min-height: 500px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 0px solid;
+    border-radius: 5px;
+    margin: 2%;
+    padding: 1%;
+}
+
+    .blockContent h2 {
+        text-align: center;
+    }
+
+.buttons {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.btnCustom{
+    width: 100%;
+}
+
+.form-control-custom{
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555555;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+/*Tooltip Style*/
+/*====================================================================*/
+/* Tooltip container */
+.tooltipCustom {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltipCustom .tooltiptext {
+    visibility: hidden;
+    width: 420px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+       bottom: 115%;
+    left: 0%; 
+    margin-left: -200px;
+
+    opacity: 0.7;
+}
+
+.tooltipCustom .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltipCustom:hover .tooltiptext {
+    visibility: visible;
+}
+
+/*Home page style*/
+/*====================================================================*/
+
+.homeHeader {
+    padding-right: 60px;
+    padding-left: 60px;
+    border-radius: 6px;
+    padding: 2%;
+    margin-bottom: 30px;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 2.1428571435;
+    color: inherit;
+    background-color: #eeeeee;
+}
+
+
+
+    .homeHeader h1 {
+        font-size: 63px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+
+.homeBloc1 {
+    /*background: rgba(109, 200, 122, 0.9);*/
+    background: rgba(0, 0, 0, 0.5);
+    border: 0px solid;
+    color: white;
+    border-radius: 5px;
+    margin: 0% 2% 2% 0%;
+    height: 250px;
+}
+
+.homeBloc2 {
+    /*background: rgba(255, 88, 71, 0.9);*/
+    background: rgba(0, 0, 0, 0.5);
+    border: 0px solid;
+    color: white;
+    border-radius: 10px;
+    margin: 0% 2% 2% 0%;
+    height: 250px;
+}
+
+.homeBloc3 {
+    background: rgba(0, 0, 0, 0.5);
+    border: 0px solid;
+    color: white;
+    border-radius: 5px;
+    margin: 0% 2% 2% 0%;
+    height: 120px;
+}
+
+.homeBloc4 {
+    background: rgba(0, 0, 0, 0.5);
+    border: 0px solid;
+    color: white;
+    border-radius: 5px;
+    margin: 5% 0% 0% 0%;
+    height: 120px;
+}
+
+.homeBloc3and4 {
+    margin: 0% 0% 0% 0%;
+    height: 250px;
+}
+
+.homeBloc5 {
+    background: rgba(0, 0, 0, 0.5);
+    border: 0px solid;
+    color: white;
+    border-radius: 5px;
+    margin: 2% 2% 2% 0%;
+    height: 170px;
+}
+
+.homeBloc6 {
+    background: rgba(0, 0, 0, 0.5);
+    border: 0px solid;
+    color: white;
+    border-radius: 5px;
+    margin: 2% 2% 2% 0%;
+    height: 170px;
+}
+
+.homeBloc7 {
+    background: rgba(0, 0, 0, 0.5);
+    border: 0px solid;
+    color: white;
+    border-radius: 5px;
+    margin: 2% 2% 2% 0%;
+    height: 170px;
+}
+
+.homeBloc8 {
+    background: rgba(0, 0, 0, 0.5);
+    border: 0px solid;
+    color: white;
+    border-radius: 5px;
+    margin: 2% 2% 2% 0%;
+    height: 170px;
+}
+
+
+@media (max-width: 992px) {
+    .homeHeader {
+   font-size: 15px;
+   padding-right: 3%;
+   padding-left: 5%;
+}
+
+
+
+    .homeHeader h1 {
+        font-size: 23px;
+      
+        float: left;
+    }
+
+    .logoHome{
+       float: right ;
+    }
+
+
+    .homeBloc1 {
+  
+    height: 350px;
+        padding:  1% 2% 2% 0%;
+}
+
+    .homeBloc2 {
+   
+    height: 230px;
+    padding:  1% 2% 2% 0%;
+}
+    
+}
+
+/*Login page style*/
+/*====================================================================*/
+
+.loginBlock {
+    background: rgba(0, 0, 0, 0.5);
+    border: 0px solid;
+    color: white;
+    border-radius: 5px;
+    margin: 0% 2% 2% 0%;
+    height: 350px;
+    width: 40%;
+    position: absolute;
+    left: 30%;
+    top: 30%;
+}
+
+    .loginBlock h2, h4 {
+        text-align: center;
+    }
+
+@media (max-width: 992px) {
+
+    .loginBlock {
+    
+    margin: 0% 2% 2% 0%;
+    height: 400px;
+    width: 80%;
+    position: absolute;
+    left: 10%;
+    top: 20%;
+}
+
+    .loginBlock h2, h4 {
+        text-align: center;
+    }
+}

@@ -1,0 +1,112 @@
+﻿@model IEnumerable<UI_MVC.Domain.Member>
+
+@{
+    ViewBag.Title = "Brevets délivré par année";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="blockContent">
+    <h2>Brevets délivré en @ViewBag.year</h2>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Chercher par année: @Html.TextBox("year", null, new { @class = "form-control-custom", placeholder = "Chercher" })
+
+            <input type="submit" value="Chercher" class="btn btn-default" />
+        </p>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CMASNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LIFRASNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiveLicenses)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecialisationLicenses)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApneaLicenses)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CMASNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LIFRASNumber)
+                </td>
+                <td>
+                    @if (item.DiveLicenses != null)
+                    {
+                        foreach (var lic in item.DiveLicenses)
+                        {
+                            @Html.DisplayFor(modelItem => lic.Level)                            <b><text> (</text>@Html.DisplayFor(modelItem => lic.DateGet)<text>) </text></b>                        <br/>
+                        }
+                    }
+                   
+
+                </td>
+                <td>
+                    @if (item.SpecialisationLicenses != null)
+                    {
+                        foreach (var lic in item.SpecialisationLicenses)
+                    {
+                            @Html.DisplayFor(modelItem => lic.Level)                            <b>
+                                <text> (</text>@Html.DisplayFor(modelItem => lic.DateGet)<text>) </text>
+                            </b><br />
+                                }
+                                }
+
+
+</td>
+                <td>
+                    @if (item.ApneaLicenses != null)
+                    {
+                        foreach (var lic in item.ApneaLicenses)
+                    {
+                            @Html.DisplayFor(modelItem => lic.Level)                            <b><text> (</text>@Html.DisplayFor(modelItem => lic.DateGet)<text>) </text></b><br />
+                        }
+                    }
+                    
+
+                </td>
+
+                <td>
+                    @if (User.Identity.Name.Equals("emmanuel.kouar@outlook.com"))
+                    {
+                        @Html.ActionLink("Modifier", "Edit", "Members", new { id = item.MemberId }, new { @class = "btn btn-default btnCustom" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Modifier", "Edit", "Members", new { id = item.MemberId }, new { @class = "btn btn-default btnCustom disabled" })
+                    }
+                    @Html.ActionLink("Details", "Details", "Members", new { id = item.MemberId }, new { @class = "btn btn-default btnCustom" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

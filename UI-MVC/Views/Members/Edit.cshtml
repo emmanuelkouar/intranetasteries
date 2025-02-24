@@ -1,0 +1,1075 @@
+﻿@model UI_MVC.Models.ViewModelMember
+
+@{
+    ViewBag.Title = "Edit Member";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="blockContent">
+    <h2>@Model.Member.LastName @Model.Member.FirstName</h2>
+
+    <ul class="nav nav-tabs" role="tablist" id="myTabs">
+        <li role="presentation" class="active"><a href="#Member" aria-controls="Member" role="tab" data-toggle="tab">Membre <span class="glyphicon glyphicon-user"></span></a></li>
+        <li role="presentation"><a href="#MedVisit" aria-controls="MedVisit" role="tab" data-toggle="tab">Médicale <span class="glyphicon glyphicon-certificate"></span></a></li>
+        <li role="presentation"><a href="#ECG" aria-controls="Ecg" role="tab" data-toggle="tab">E.C.G. <span class="glyphicon glyphicon-heart"></span></a></li>
+        <li role="presentation"><a href="#Subscription" aria-controls="Subscription" role="tab" data-toggle="tab">Cotisations <span class="glyphicon glyphicon-euro"></span></a></li>
+        <li role="presentation"><a href="#CFPS" aria-controls="Cfps" role="tab" data-toggle="tab">CFPS <span class="glyphicon glyphicon-plus"></span></a></li>
+        <li role="presentation"><a href="#DiveLicense" aria-controls="DiveLicense" role="tab" data-toggle="tab">Plongée <span class="glyphicon glyphicon-book"></span></a></li>
+        <li role="presentation"><a href="#SpecLicense" aria-controls="SpecLicense" role="tab" data-toggle="tab">Spécialisations <span class="glyphicon glyphicon-book"></span></a></li>
+        <li role="presentation"><a href="#ApneaLicense" aria-controls="ApneaLicense" role="tab" data-toggle="tab">Apnée <span class="glyphicon glyphicon-book"></span></a></li>
+        <li role="presentation"><a href="#ICE" aria-controls="ICE" role="tab" data-toggle="tab">ICE <span class="glyphicon glyphicon-earphone"></span></a></li>
+        <li role="presentation"><a href="#Function" aria-controls="Function" role="tab" data-toggle="tab">Fonctions <span class="glyphicon glyphicon-screenshot"></span></a></li>
+
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="Member">
+            @using (Html.BeginForm("SaveMember", "Members", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Member.MemberId)
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Member.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Member.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Member.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Member.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Member.Country, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Member.Country, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Member.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Member.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.HouseNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Member.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Member.HouseNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.MailBox, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Member.MailBox, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Member.MailBox, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.Zip, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Member.Zip, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Member.Zip, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Member.City, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Member.City, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.AllergiesOrMedicaments, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Member.AllergiesOrMedicaments, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Member.AllergiesOrMedicaments, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Member.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Member.Phone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Member.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Member.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.Birthdate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Member.Birthdate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                @Html.ValidationMessageFor(model => model.Member.Birthdate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EnumDropDownListFor(model => model.Member.Gender, "Sexe", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Member.Gender, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.CMASNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Member.CMASNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Member.CMASNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Member.LIFRASNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Member.LIFRASNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Member.LIFRASNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("Retour", "Index", null, new { @class = "btn btn-default" })
+                        <input type="submit" value="Enregistrer" class="btn btn-default" />
+                    </div>
+                </div>
+
+
+
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="MedVisit">
+            @using (Html.BeginForm("Create", "Medical", new { id = Model.Member.MemberId }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Nouvelle visite médicale</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.MedicalVisit.MedicalVisitId)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalVisit.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MedicalVisit.Date, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                            @Html.ValidationMessageFor(model => model.MedicalVisit.Date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalVisit.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MedicalVisit.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MedicalVisit.Notes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.MedicalVisit.ExpirationDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.MedicalVisit.ExpirationDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                @Html.ValidationMessageFor(model => model.MedicalVisit.ExpirationDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MedicalVisit.AuthorizeApnea, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.MedicalVisit.AuthorizeApnea)
+                                @Html.ValidationMessageFor(model => model.MedicalVisit.AuthorizeApnea, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            @Html.ActionLink("Retour", "Index", null, new { @class = "btn btn-default" })
+                            <input type="submit" value="Enregistrer" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+
+            <h4>Archives médicales</h4>
+
+
+            @if (Model.Member.MedicalVisits.Count() != 0)
+            {
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.Label("Date")
+                        </th>
+                        <th>
+                            @Html.Label("Autorisation apnée")
+                        </th>
+                        <th>
+                            @Html.Label("Date d'échéance")
+                        </th>
+                        <th>
+                            @Html.Label("Notes")
+                        </th>
+                        <th></th>
+
+                    </tr>
+                    @foreach (var item in Model.Member.MedicalVisits.OrderByDescending(i => i.ExpirationDate))
+                {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AuthorizeApnea)
+                            </td>
+                            <td>
+                                @if (item.ExpirationDate.CompareTo(DateTime.Now) < 0)
+                                {
+                                    <div style="color: red">
+                                        @Html.DisplayFor(modelItem => item.ExpirationDate)
+                                    </div>
+                                }
+                                else if (DateTime.Now.CompareTo(item.ExpirationDate.AddDays(-90)) >= 0)
+                                {
+                                    <div style="color: orange">
+                                        @Html.DisplayFor(modelItem => item.ExpirationDate)
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div style="color: green">
+                                        @Html.DisplayFor(modelItem => item.ExpirationDate)
+                                    </div>
+                                }
+
+
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Notes)
+                            </td>
+                            <td>
+                                @using (Html.BeginForm("Delete", "Medical", new { id = item.MedicalVisitId, memberId = Model.Member.MemberId }, FormMethod.Post))
+                                {
+                                    <input type="submit" value="Supprimer" class="btn btn-danger" />
+                                }
+                                @* @Html.ActionLink("Delete", "Delete", "Medical", new { id = item.MedicalVisitId }, new { @class = "btn btn-danger"})*@
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                @:<i>Pas d'archives en ce moment.</i>
+                }
+
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="ECG">
+            @using (Html.BeginForm("Create", "ECG", new { id = Model.Member.MemberId }, FormMethod.Post))
+            {
+
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Nouveau E.C.G.</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Ecg.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Ecg.Date, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Ecg.Date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Ecg.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Ecg.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Ecg.Notes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("Retour", "Index", null, new { @class = "btn btn-default" })
+                        <input type="submit" value="Enregistrer" class="btn btn-default" />
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            }
+
+            <h4>Archives E.C.G.</h4>
+            @if (Model.Member.Ecgs.Count() != 0)
+            {
+
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.Label("Date")
+                        </th>
+                        <th>
+                            @Html.Label("Notes")
+                        </th>
+                        <th>
+                            @Html.Label("Date d'échéance")
+                        </th>
+                        <th></th>
+                    </tr>
+
+
+                    @foreach (var item in Model.Member.Ecgs.OrderByDescending(i => i.ExpirationDate))
+                {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Notes)
+                            </td>
+                            <td>
+                                @if (item.ExpirationDate.CompareTo(DateTime.Now) < 0)
+                                {
+                                    <div style="color: red">
+                                        @Html.DisplayFor(modelItem => item.ExpirationDate)
+                                    </div>
+                                }
+                                else if (DateTime.Now.CompareTo(item.ExpirationDate.AddDays(-90)) >= 0)
+                                {
+                                    <div style="color: orange">
+                                        @Html.DisplayFor(modelItem => item.ExpirationDate)
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div style="color: green">
+                                        @Html.DisplayFor(modelItem => item.ExpirationDate)
+                                    </div>
+                                }
+                            </td>
+                            <td>
+                                @using (Html.BeginForm("Delete", "ECG", new { id = item.ECGId, memberId = Model.Member.MemberId }, FormMethod.Post))
+                                {
+                                    <input type="submit" value="Supprimer" class="btn btn-danger" />
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+            }
+            else
+            {
+                <i>Pas d'archives E.C.G. en ce moment.</i>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Subscription">
+            @using (Html.BeginForm("Create", "Subscription", new { id = Model.Member.MemberId }, FormMethod.Post))
+            {
+
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Nouvelle cotisation</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Subscription.DatePayed, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Subscription.DatePayed, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                            @Html.ValidationMessageFor(model => model.Subscription.DatePayed, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Subscription.MembershipType, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EnumDropDownListFor(model => model.Subscription.MembershipType, "Type", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Subscription.MembershipType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            @Html.ActionLink("Retour", "Index", null, new { @class = "btn btn-default" })
+                            <input type="submit" value="Enregistrer" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+            <h4>Archives de cotisations</h4>
+            @if (Model.Member.Subscriptions.Count() != 0)
+            {
+
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.Label("Date de paiement")
+                        </th>
+                        <th>
+                            @Html.Label("Date d'échéance")
+                        </th>
+                        <th>
+                            @Html.Label("Années consecutives")
+                        </th>
+                        <th>
+                            @Html.Label("Type de cotisation")
+                        </th>
+                        <th>
+                            @Html.Label("Statut")
+                        </th>
+                        <th>
+                            @Html.Label("Type de membre")
+                        </th>
+                        <th></th>
+                    </tr>
+
+
+                    @foreach (var item in Model.Member.Subscriptions.OrderByDescending(i => i.ExpirationDate))
+                {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DatePayed)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ExpirationDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ConsecutiveYears)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SubscriptionType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MemberState)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MembershipType)
+                            </td>
+                            <td>
+                                @using (Html.BeginForm("Delete", "Subscription", new { id = item.SubscriptionId, memberId = Model.Member.MemberId }, FormMethod.Post))
+                                {
+                                    <input type="submit" value="Supprimer" class="btn btn-danger" />
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+            }
+            else
+            {
+                <i>Pas d'archives de cotisations en ce moment.</i>
+            }
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="CFPS">
+            @using (Html.BeginForm("Create", "CFPS", new { id = Model.Member.MemberId }, FormMethod.Post))
+        {
+
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Nouveau CFPS</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.CFPS.DateGet, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CFPS.DateGet, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                    @Html.ValidationMessageFor(model => model.CFPS.DateGet, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CFPS.IsRecycling, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.CFPS.IsRecycling)
+                        @Html.ValidationMessageFor(model => model.CFPS.IsRecycling, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("retour", "Index", null, new { @class = "btn btn-default" })
+                    <input type="submit" value="Enregistrer" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+        }
+
+            <h4>Archives CFPS</h4>
+            @if (Model.Member.CFPSs.Count() != 0)
+        {
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.Label("Délivré le")
+                </th>
+                <th>
+                    @Html.Label("Recyclage")
+                </th>
+                <th>
+                    @Html.Label("Date d'échéance")
+                </th>
+                <th></th>
+            </tr>
+
+
+            @foreach (var item in Model.Member.CFPSs.OrderByDescending(i => i.ExpirationDate))
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateGet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsRecycling)
+                    </td>
+                    <td>
+                        @if (item.ExpirationDate.CompareTo(DateTime.Now) < 0)
+                            {
+                            <div style="color: red">
+                                @Html.DisplayFor(modelItem => item.ExpirationDate)
+                            </div>
+                            }
+                            else
+                            {
+                            <div style="color: green">
+                                @Html.DisplayFor(modelItem => item.ExpirationDate)
+                            </div>
+                                    }
+
+
+                    </td>
+
+                    <td>
+                        @using (Html.BeginForm("Delete", "CFPS", new { id = item.CFPSId, memberId = Model.Member.MemberId }, FormMethod.Post))
+                            {
+                            <input type="submit" value="Supprimer" class="btn btn-danger" />
+                            }
+                    </td>
+                </tr>
+                }
+        </table>
+
+        }
+        else
+        {
+        <i>Pas d'archives CFPS en ce moment</i>
+        }
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="DiveLicense">
+            @using (Html.BeginForm("Create", "DiveLicense", new { id = Model.Member.MemberId }, FormMethod.Post))
+        {
+
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Nouveau brevet de plongée</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.DiveLicense.DateGet, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DiveLicense.DateGet, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                    @Html.ValidationMessageFor(model => model.DiveLicense.DateGet, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DiveLicense.Level, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => model.DiveLicense.Level, "Level", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DiveLicense.Level, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DiveLicense.LicenseNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DiveLicense.LicenseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiveLicense.LicenseNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Retour", "Index", null, new { @class = "btn btn-default" })
+                    <input type="submit" value="Enregistrer" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+        }
+
+            <h4>Archives de brevets de plongée</h4>
+            @if (Model.Member.DiveLicenses.Count() != 0)
+        {
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.Label("Délivré le")
+                </th>
+                <th>
+                    @Html.Label("Niveau")
+                </th>
+                <th>
+                    @Html.Label("N° de brevet")
+                </th>
+                <th></th>
+            </tr>
+
+
+            @foreach (var item in Model.Member.DiveLicenses.OrderByDescending(i => i.DateGet))
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateGet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Level)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LicenseNumber)
+                    </td>
+
+                    <td>
+                        @using (Html.BeginForm("Delete", "DiveLicense", new { id = item.DiveLicenseId, memberId = Model.Member.MemberId }, FormMethod.Post))
+                            {
+                            <input type="submit" value="Supprimer" class="btn btn-danger" />
+                            }
+                    </td>
+                </tr>
+                }
+        </table>
+
+        }
+        else
+        {
+        <i>Pas d'archives de brevets de plongée en ce moment</i>
+        }
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="SpecLicense">
+            @using (Html.BeginForm("Create", "SpecialisationLicense", new { id = Model.Member.MemberId }, FormMethod.Post))
+        {
+
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Nouveau brevet de spécialisation</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.SpecialisationLicense.DateGet, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SpecialisationLicense.DateGet, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                    @Html.ValidationMessageFor(model => model.SpecialisationLicense.DateGet, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SpecialisationLicense.Level, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => model.SpecialisationLicense.Level, "Level", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SpecialisationLicense.Level, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SpecialisationLicense.LicenseNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SpecialisationLicense.LicenseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SpecialisationLicense.LicenseNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Retour", "Index", null, new { @class = "btn btn-default" })
+                    <input type="submit" value="Enregistrer" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+        }
+
+            <h4>Archives brevets de spécialisation</h4>
+            @if (Model.Member.SpecialisationLicenses.Count() != 0)
+        {
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.Label("Délivré le")
+                </th>
+                <th>
+                    @Html.Label("Niveau")
+                </th>
+                <th>
+                    @Html.Label("N° de brevet")
+                </th>
+                <th></th>
+            </tr>
+
+
+            @foreach (var item in Model.Member.SpecialisationLicenses.OrderByDescending(i => i.DateGet))
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateGet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Level)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LicenseNumber)
+                    </td>
+
+                    <td>
+                        @using (Html.BeginForm("Delete", "SpecialisationLicense", new { id = item.SpecialisationLicenseId, memberId = Model.Member.MemberId }, FormMethod.Post))
+                            {
+                            <input type="submit" value="Supprimer" class="btn btn-danger" />
+                            }
+                    </td>
+                </tr>
+                }
+        </table>
+
+        }
+        else
+        {
+        <i>Pas d'archives de brevets de spécialisation en ce moment.</i>
+        }
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="ApneaLicense">
+            @using (Html.BeginForm("Create", "ApneaLicense", new { id = Model.Member.MemberId }, FormMethod.Post))
+        {
+
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Nouveau brevet d'apnée</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.ApneaLicense.DateGet, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ApneaLicense.DateGet, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                    @Html.ValidationMessageFor(model => model.ApneaLicense.DateGet, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ApneaLicense.Level, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => model.ApneaLicense.Level, "Level", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ApneaLicense.Level, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ApneaLicense.LicenseNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ApneaLicense.LicenseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ApneaLicense.LicenseNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("retour", "Index", null, new { @class = "btn btn-default" })
+                    <input type="submit" value="Enregistrer" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+        }
+
+            <h4>Archives brevets d'apnée</h4>
+            @if (Model.Member.ApneaLicenses.Count() != 0)
+        {
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.Label("Délivré le")
+                </th>
+                <th>
+                    @Html.Label("Niveau")
+                </th>
+                <th>
+                    @Html.Label("N° de brevet")
+                </th>
+                <th></th>
+            </tr>
+
+
+            @foreach (var item in Model.Member.ApneaLicenses.OrderByDescending(i => i.DateGet))
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateGet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Level)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LicenseNumber)
+                    </td>
+
+                    <td>
+                        @using (Html.BeginForm("Delete", "ApneaLicense", new { id = item.ApneaLicenseId, memberId = Model.Member.MemberId }, FormMethod.Post))
+                            {
+                            <input type="submit" value="Supprimer" class="btn btn-danger" />
+                            }
+                    </td>
+                </tr>
+                }
+        </table>
+
+        }
+        else
+        {
+        <i>Pas d'archives de brevets d'apnée en ce moment.</i>
+        }
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="ICE">
+            @using (Html.BeginForm("Create", "ICE", new { id = Model.Member.MemberId }, FormMethod.Post))
+        {
+
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Nouveau ICE</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ice.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Ice.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ice.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ice.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Ice.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ice.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ice.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Ice.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ice.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ice.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Ice.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ice.Phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Retour", "Index", null, new { @class = "btn btn-default" })
+                    <input type="submit" value="Enregistrer" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+        }
+
+            <h4>Tous les ICE</h4>
+            @if (Model.Member.ICEs.Count() != 0)
+        {
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.Label("Prénom")
+                </th>
+                <th>
+                    @Html.Label("Nom")
+                </th>
+                <th>
+                    @Html.Label("Déscription")
+                </th>
+                <th>
+                    @Html.Label("Numéro de téléphone")
+                </th>
+                <th></th>
+            </tr>
+
+
+            @foreach (var item in Model.Member.ICEs)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+
+                    <td>
+                        @using (Html.BeginForm("Delete", "ICE", new { id = item.ICEId, memberId = Model.Member.MemberId }, FormMethod.Post))
+                            {
+                            <input type="submit" value="Supprimer" class="btn btn-danger" />
+                            }
+                    </td>
+                </tr>
+                }
+        </table>
+
+        }
+        else
+        {
+        <i>Pas d'ICE en ce moment.</i>
+        }
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="Function">
+            @using (Html.BeginForm("Create", "MemberFunction", new { id = Model.Member.MemberId }, FormMethod.Post))
+            {
+
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Nouvelle fonction</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MemberFunction.Function, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EnumDropDownListFor(model => model.MemberFunction.Function, "Function", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MemberFunction.Function, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            @Html.ActionLink("Retour", "Index", null, new { @class = "btn btn-default" })
+                            <input type="submit" value="Enregistrer" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+            <h4>Toutes les fonctions</h4>
+            @if (Model.Member.MemberFunctions.Count() != 0)
+            {
+
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.Label("Fonction")
+                        </th>
+
+                        <th></th>
+                    </tr>
+
+
+                    @foreach (var item in Model.Member.MemberFunctions)
+                {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Function)
+                            </td>
+
+                            <td>
+                                @using (Html.BeginForm("Delete", "MemberFunction", new { id = item.MemberFunctionId, memberId = Model.Member.MemberId }, FormMethod.Post))
+                                {
+                                    <input type="submit" value="Supprimer" class="btn btn-danger" />
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+            }
+            else
+            {
+                <i>Pas de fonctions en ce moment.</i>
+            }
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    <script type="text/javascript">
+        $('#myTabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+
+    </script>
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+
+

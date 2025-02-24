@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="intranetasteries" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Emmanuel\\CloudStation\\Emmanuel\\5\.Informatics\\2\.Projects\\1\.LesAsteries\\WebAdministrationSystem\\Sys\\UI-MVC\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Emmanuel\\CloudStation\\Emmanuel\\5\.Informatics\\2\.Projects\\1\.LesAsteries\\WebAdministrationSystem\\Sys\\UI-MVC\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=asteries.database.windows.net;Initial Catalog=intranetasteries;User ID=asteries;Password=Etoiles2000;Connect Timeout=15;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Emmanuel\\CloudStation\\Emmanuel\\5\.Informatics\\2\.Projects\\1\.LesAsteries\\WebAdministrationSystem\\Sys\\UI-MVC\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="UI_MVC.Migrations.MySqlHistoryContext-Web.config Connection String" description="" value="UI_MVC.Migrations.MySqlHistoryContext_ConnectionString" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Emmanuel\\CloudStation\\Emmanuel\\5\.Informatics\\2\.Projects\\1\.LesAsteries\\WebAdministrationSystem\\Sys\\UI-MVC\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='UI_MVC.Migrations.MySqlHistoryContext']/@connectionString" />
+  </parameter>
+</parameters>
