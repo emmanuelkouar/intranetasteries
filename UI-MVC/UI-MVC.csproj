@@ -282,7 +282,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Style\images\Asréries - to breathe or not to breathe-01.png" />
+    <!--<Content Include="Style\images\Asréries - to breathe or not to breathe-01.png" />-->
     <Content Include="Style\images\icon.ico" />
     <Content Include="Style\images\info.png" />
     <Content Include="Style\images\logo.gif" />
