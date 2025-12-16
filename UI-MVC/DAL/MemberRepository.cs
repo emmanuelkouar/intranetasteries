@@ -161,7 +161,7 @@ namespace UI_MVC.DAL
 
         public IEnumerable<Member> ReadMembersWithCFPS()
         {
-            IEnumerable<Member> membersWithCFPS = ctx.Members.Include(m => m.CFPSs).ToList();
+            IEnumerable<Member> membersWithCFPS = ctx.Members.Include(m => m.Subscriptions).Include(m => m.CFPSs).ToList();
             foreach (var item in membersWithCFPS)
             {
                 if (item.CFPSs.Count != 0)
@@ -184,3 +184,4 @@ namespace UI_MVC.DAL
     }
 
 }
+
