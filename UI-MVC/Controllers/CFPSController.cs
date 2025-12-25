@@ -19,6 +19,7 @@ namespace UI_MVC.Controllers
         {
             IEnumerable<Member> membersWithCFPS = mgrMbr.GetMembersWithCFPS();
             //membersWithCFPS = membersWithCFPS.Where(m => m.Subscriptions.Last().ExpirationDate.Year == DateTime.Now.Year || (m.Subscriptions.Last().DatePayed.Month >= 9 && m.Subscriptions.Last().DatePayed.Year == DateTime.Now.Year));
+            membersWithCFPS = membersWithCFPS.Where(m => m.Subscriptions.Last().ExpirationDate.Year == DateTime.Now.Year);
             return View(membersWithCFPS);
         }
 
@@ -110,4 +111,5 @@ namespace UI_MVC.Controllers
         }
     }
 }
+
 
