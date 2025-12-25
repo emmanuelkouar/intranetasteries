@@ -32,7 +32,9 @@ namespace UI_MVC.Domain
 	    PlongeeEnfantInstructeurCertificateur,
 	    PlongeurPhotographe,
 	    PlongeurCineaste,
-        Oceanologue
+        Oceanologue,
+		RecyclageMoniteurMADECO 
 
     }
+
 }
